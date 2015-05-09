@@ -1,6 +1,7 @@
 package com.fedorvlasov.lazylist;
 
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,8 +14,6 @@ public class MainActivity extends Activity {
     
     ListView list;
     LazyAdapter adapter;
-    ImageLoaderConfiguration configuration = ImageLoaderConfiguration  
-            .createDefault(this);  
       
     
 
@@ -23,7 +22,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
       //Initialize ImageLoader with configuration.  
-       // ImageLoader.getInstance().init(configuration);  
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this)); 
         list=(ListView)findViewById(R.id.list);
         adapter=new LazyAdapter(this, mStrings);
         list.setAdapter(adapter);
@@ -43,7 +42,8 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View arg0) {
         	
-            adapter.imageLoader.clearCache();
+            adapter.imageLoader.clearMemoryCache();
+            adapter.imageLoader.clearDiscCache();
             adapter.notifyDataSetChanged();
         }
     };
