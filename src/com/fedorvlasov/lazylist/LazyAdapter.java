@@ -171,7 +171,6 @@ public class LazyAdapter extends BaseAdapter {
 			public void onProgressUpdate(String imageUri, View view,
 					int current, int total) {
 				// TODO Auto-generated method stub
-				//dataprobar.setProgress(Integer.parseInt(BigInteger.valueOf(current).divide(BigInteger.valueOf(total)).toString())*100);
 				dataprobar.setProgress(current*100/total);
 				//Log.v("LazyAdapter","第"+position+"个：current="+current+",total="+total);
 				//Log.v("LazyAdapter","进度为"+Integer.parseInt(BigInteger.valueOf(current).divide(BigInteger.valueOf(total)).toString())*100);
