@@ -1,14 +1,17 @@
 package com.fedorvlasov.lazylist;
 
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class MainActivity extends Activity {
     
@@ -26,7 +29,20 @@ public class MainActivity extends Activity {
         list=(ListView)findViewById(R.id.list);
         adapter=new LazyAdapter(this, mStrings);
         list.setAdapter(adapter);
-        
+        list.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				//ImageShowActivity.startImageShowActivity(MainActivity.this,mStrings[position]);
+				/*Intent intent = new Intent(MainActivity.this, ImageShowActivity.class);
+				intent.putExtra("url", mStrings[position]);
+				startActivity(intent);*/
+				
+			}
+        	
+        });
         Button b=(Button)findViewById(R.id.button1);
         b.setOnClickListener(listener);
     }
@@ -49,7 +65,7 @@ public class MainActivity extends Activity {
     };
     
     private String[] mStrings={
-    		 "http://img.my.csdn.net/uploads/201309/01/1378037235_3453.jpg",  
+    		 "http://img.my.csdns.net/uploads/201309/01/1378037235_3453.jpg",  
              "http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg",  
              "http://img.my.csdn.net/uploads/201309/01/1378037235_9280.jpg",  
              "http://img.my.csdn.net/uploads/201309/01/1378037234_3539.jpg",  
